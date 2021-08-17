@@ -4,12 +4,43 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <script type="text/javascript" src="connect-streams-min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
   <title>John Gartsu Portfolio</title>
 </head>
 
-<body>
+<body onload="init()">
+  <div id="container-div" style="width: 400px; height: 800px;"></div>
   <div class="app-wrapper"></div>
+  <script type="type/javascript">
+    var containerDiv = document.getElementById("containerDiv");
+    var instanceURL = "https://cogtraining.my.connect.aws/connect/ccp-v2";
+    <!-- init streams api -->
+    function init() {
+      <!-- init ccp -->
+      connect.core.initCCP(containerDiv, {
+        ccpUrl: instanceURL, 
+        loginPopup: true,
+        loginPopupAutoClose: true,
+        loginOptions: {
+          autoClose: true,
+          height: 600,
+          width: 400,
+          top: 0,
+          left: 0
+        },
+        region: "us-east-1",
+        softphone: {
+          allowFramedSoftphone: true,
+          disableRingtone: false,
+          ringtoneUrl: "./ringtone.mpd"
+        },
+        pageOptions: {
+          enableAudioDeviceSettings: false,
+          enablePhoneTypeSettings: true
+        }
+      });
+    }
+  </script>
 </body>
-
 </html>
